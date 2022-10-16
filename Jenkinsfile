@@ -1,10 +1,14 @@
 pipeline{
     agent{label 'JDK11'}
+    parameters {
+        choice(name: 'BRANCH', choices: ['master', 'develop', 'release'], description: 'all branches')
+    }
+    trigers { pollSCM('30 17 * * *') }
     stages{
         stage('clone'){
             steps{
                 git url: 'https://github.com/peddiraju3122b/shopizer.git',
-                    branch: 'master'
+                    branch: "${params.BRANCH}"
             }
         }
         stage('mvnbuild'){
