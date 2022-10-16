@@ -19,7 +19,7 @@ pipeline{
             }
         }
     }
-    post {
+    stages {
         always(artifacts) {
             steps{
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: false
