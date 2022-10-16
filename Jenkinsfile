@@ -18,17 +18,17 @@ pipeline{
                 sh 'mvn package'
             }
         }
-    }
-    stage {
-        always(artifacts) {
-            steps{
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: false
-                junit '**/surefire-reports/*.xml' 
+    post {
+        always('artifacts'){
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
         }
-        
         }
     }
-    
 }
+        
+
+    
+
 
    
