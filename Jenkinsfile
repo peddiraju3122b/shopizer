@@ -20,8 +20,8 @@ pipeline{
         }
         stage {
             always('artifacts'){
-                 archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-                 junit 'build/reports/**/*.xml'
+                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+                 junit '**/surefire-reports/*.xml'
             }
         }
     
