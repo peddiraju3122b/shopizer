@@ -18,12 +18,13 @@ pipeline{
                 sh 'mvn package'
             }
         }
-    stage {
-        always('artifacts'){
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
+        stage {
+            always('artifacts'){
+                 archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+                 junit 'build/reports/**/*.xml'
+            }
         }
-        }
+    
     }
 }
         
