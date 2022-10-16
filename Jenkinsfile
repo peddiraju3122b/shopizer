@@ -3,7 +3,9 @@ pipeline{
     parameters {
         choice(name: 'BRANCH', choices: ['master', 'develop', 'release'], description: 'all branches')
     }
-    trigers { pollSCM('30 17 * * *') }
+    triggers {
+        cron('30 17 * * *')
+    }
     stages{
         stage('clone'){
             steps{
