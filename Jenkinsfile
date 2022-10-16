@@ -18,7 +18,7 @@ pipeline{
                 sh 'mvn package'
             }
         }
-    post {
+    stage {
         always('artifacts'){
             archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
             junit 'build/reports/**/*.xml'
