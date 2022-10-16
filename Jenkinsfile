@@ -19,6 +19,15 @@ pipeline{
             }
         }
     }
+    post {
+        always(artifacts) {
+            steps{
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: false
+                junit '**/surefire-reports/*.xml' 
+        }
+        
+        }
+    }
     
 }
 
