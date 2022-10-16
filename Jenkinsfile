@@ -19,10 +19,12 @@ pipeline{
             }
         }
     }
-    post {
-        always {
-            archiveArtifacts artifacts: '**/target/*.jar', 
+    stages {
+        stage(ARTIFACTS) {
+            steps{
+                archiveArtifacts artifacts: '**/target/*.jar', 
             junit '/**/target/surefire-reports/*.xml'
+            }
         }
     }
 }
