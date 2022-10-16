@@ -4,7 +4,7 @@ pipeline{
         stage('clone'){
             steps{
                 git url: 'https://github.com/peddiraju3122b/shopizer.git',
-                branch:'master'
+                    branch: 'master'
             }
         }
         stage('mvnbuild'){
@@ -14,7 +14,3 @@ pipeline{
         }
     }
 }   
-
-    
-
-    
