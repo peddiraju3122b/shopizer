@@ -32,6 +32,10 @@ pipeline{
                 sh 'git checkout develope'
                 sh 'git merge master'
                 sh 'git push -u origin master'
+                sh 'git  checkout daybuild'
+                sh 'git merge master'
+                sh 'git push -u origin master'
+                sh 'git checkout master'
             }
         }
     
