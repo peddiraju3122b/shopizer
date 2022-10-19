@@ -4,7 +4,7 @@ pipeline{
         choice(name: 'BRANCH', choices: ['master', 'develop', 'release'], description: 'all branches')
     }
     triggers {
-        cron('30 17 * * *')
+        cron('* * * * *')
     }
     stages{
         stage('clone'){
@@ -22,6 +22,16 @@ pipeline{
             steps{
                  archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                  junit '**/surefire-reports/*.xml'
+            }
+        }
+        stage(script){
+            steps{
+                sh 'git checkout release'
+                sh 'git merge develope'
+                sh 'git push -u origin develope'
+                sh 'git checkout develope'
+                sh 'git merge master'
+                sh 'git push -u origin master'
             }
         }
     
