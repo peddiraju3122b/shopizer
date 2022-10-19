@@ -4,7 +4,7 @@ pipeline{
         choice(name: 'BRANCH', choices: ['master', 'develop', 'release'], description: 'all branches')
     }
     triggers {
-        cron('* * * * *')
+        cron('30 17 * * *')
     }
     stages{
         stage('clone'){
