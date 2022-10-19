@@ -1,8 +1,5 @@
 pipeline{
     agent{label 'JDK11'}
-    parameters {
-        choice(name: 'BRANCH', choices: ['master', 'develop', 'release'], description: 'all branches')
-    }
     triggers {
         cron('30 17 * * *')
     }
@@ -10,7 +7,7 @@ pipeline{
         stage('clone'){
             steps{
                 git url: 'git@github.com:peddiraju3122b/shopizer.git',
-                    branch: "${params.BRANCH}"
+                    branch: 'daybuild'
             }
         }
         stage(script){
