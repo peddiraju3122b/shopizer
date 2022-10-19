@@ -13,32 +13,13 @@ pipeline{
                     branch: "${params.BRANCH}"
             }
         }
-        stage('mvnbuild'){
-            steps{
-                sh 'mvn package'
-            }
-        }
-        stage('artifacts') {
-            steps{
-                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-                 junit '**/surefire-reports/*.xml'
-            }
-        }
         stage(script){
             steps{
+                sh 'develop'
                 sh 'git checkout release'
-                sh 'git merge develope'
-                sh 'git push -u origin develope'
-                sh 'git checkout develope'
-                sh 'git merge master'
-                sh 'git push -u origin master'
-                sh 'git  checkout daybuild'
-                sh 'git merge master'
-                sh 'git push -u origin master'
-                sh 'git checkout master'
+                sh 'git merge develop --no-ff'
+                sh 'git push -u origin release'
             }
         }
-    
     }
-
 }   
