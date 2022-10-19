@@ -9,13 +9,13 @@ pipeline{
     stages{
         stage('clone'){
             steps{
-                git url: 'https://github.com/peddiraju3122b/shopizer.git',
+                git url: 'git@github.com:peddiraju3122b/shopizer.git',
                     branch: "${params.BRANCH}"
             }
         }
         stage(script){
             steps{
-                sh 'develop'
+                sh 'git checkout develop'
                 sh 'git checkout release'
                 sh 'git merge develop --no-ff'
                 sh 'git push -u origin release'
